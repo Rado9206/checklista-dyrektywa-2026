@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklista zgodności — Dyrektywa 2023/2673 | Sklep internetowy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0a1628;
+      --bg2: #0f2236;
+      --bg3: #162d48;
+      --border: #2a5a8a;
+      --accent: #3b9eff;
+      --accent2: #f5c842;
+      --text: #e0f0ff;
+      --text-muted: #7ec8ff;
+      --text-dim: #5aaad4;
+      --green: #3ecf8e;
+      --red: #f08080;
+      --pill-a: #1e4a7a;
+      --pill-b: #1a2e4a;
+      --pill-c: #162d48;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(59, 158, 255, 0.07);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--pill-a);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: #fff;
+      max-width: 640px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-badge {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .hero-badge strong {
+      color: var(--accent2);
+    }
+
+    /* PROGRESS */
+    .progress-wrap {
+      padding: 24px 40px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .progress-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .progress-count {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: var(--bg3);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+      border-radius: 3px;
+      width: 0%;
+      transition: width .4s ease;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* SECTION */
+    .section {
+      margin-top: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .section-desc {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* ITEM */
+    .item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+      user-select: none;
+    }
+
+    .item:hover {
+      background: var(--bg3);
+      border-color: var(--accent);
+    }
+
+    .item.checked {
+      background: #0d2a1a;
+      border-color: var(--green);
+    }
+
+    .checkbox {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      background: var(--bg3);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      margin-top: 1px;
+    }
+
+    .item.checked .checkbox {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .checkmark {
+      display: none;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .item.checked .checkmark {
+      display: block;
+    }
+
+    .item-body {
+      flex: 1;
+    }
+
+    .item-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .item.checked .item-text {
+      color: var(--green);
+      text-decoration: line-through;
+      text-decoration-color: rgba(62, 207, 142, .4);
+    }
+
+    .item-badge {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .badge-critical {
+      background: rgba(240, 128, 128, .15);
+      color: var(--red);
+      border: 1px solid rgba(240, 128, 128, .3);
+    }
+
+    .badge-important {
+      background: rgba(245, 200, 66, .12);
+      color: var(--accent2);
+      border: 1px solid rgba(245, 200, 66, .25);
+    }
+
+    /* SUMMARY CARD */
+    .summary-card {
+      margin-top: 32px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .summary-emoji {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .summary-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .summary-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .congrats {
+      display: none;
+      margin-top: 32px;
+      background: #0d2a1a;
+      border: 1px solid var(--green);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .congrats.visible {
+      display: block;
+    }
+
+    .congrats-emoji {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .congrats-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .congrats-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* RESET */
+    .btn-reset {
+      display: block;
+      margin: 20px auto 0;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 9px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+
+    .btn-reset:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* FOOTER */
+    .footer-note {
+      margin-top: 48px;
+      padding: 20px 40px;
+      background: #060e1a;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+
+    /* BRANDING */
+    .branding {
+      margin-top: 40px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .branding-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .branding-body {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .branding-name {
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .branding-name span {
+      color: var(--accent);
+    }
+
+    .branding-tagline {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .branding-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .branding-contact {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .branding-contact:hover {
+      color: var(--accent);
+    }
+
+    .branding-contact svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .branding-cta {
+      margin-top: 16px;
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+
+    .branding-cta:hover {
+      opacity: .85;
+    }
+
+    @media (max-width: 600px) {
+      .branding {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 32px 20px 28px;
+      }
+
+      .progress-wrap {
+        padding: 16px 20px;
+      }
+
+      .hero-meta {
+        flex-direction: column;
+      }
+
+      .footer-note {
+        padding: 16px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero">
+    <div class="hero-tag">Dyrektywa UE 2023/2673</div>
+    <h1>Checklista dla sklepu internetowego<br><span>przed 19 czerwca 2026</span></h1>
+    <p class="hero-sub">19 punktów do wdrożenia podzielonych na trzy obszary: interfejs, dokumenty i UX. Kliknij każdy
+      punkt, który masz już zrobiony.</p>
+    <div class="hero-meta">
+      <div class="hero-badge">Termin: <strong>19 czerwca 2026</strong></div>
+      <div class="hero-badge">Kara za brak: <strong>do 10% obrotu (UOKiK)</strong></div>
+      <div class="hero-badge">Dotyczy: <strong>każdego sklepu B2C w UE</strong></div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-label">Postęp wdrożenia</span>
+      <span class="progress-count" id="progressCount">0 / 19</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div>
+          <div class="section-title">Interfejs i technikalia</div>
+          <div class="section-desc">Elementy widoczne dla klienta w sklepie</div>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Widoczny przycisk „Odstąp od umowy" w panelu klienta (Moje konto → Zamówienia)</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Przycisk aktywny tylko przez 14 dni od odbioru towaru i automatycznie ukrywany po
+            terminie</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Formularz zwrotu dostępny online, bez wychodzenia ze sklepu (maks. 2 kliknięcia od
+            zamówienia)</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Automatyczny e-mail do klienta potwierdzający przyjęcie oświadczenia o odstąpieniu od
+            umowy</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Obsługa częściowego odstąpienia: możliwość zwrotu wybranych pozycji z zamówienia</div>
+          <span class="item-badge badge-important">Ważne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Ścieżka zwrotu dostępna dla gości, czyli klientów bez konta w sklepie</div>
+          <span class="item-badge badge-important">Ważne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Przycisk i formularz dostępne w językach wszystkich obsługiwanych rynków (np. EN, DE,
+            CZ)</div>
+          <span class="item-badge badge-important">Ważne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Jeśli sklep ma aplikację mobilną: przycisk zwrotu musi być dostępny również w niej
+          </div>
+          <span class="item-badge badge-important">Ważne</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div>
+          <div class="section-title">Dokumenty prawne</div>
+          <div class="section-desc">Regulamin, polityka zwrotów i klauzule informacyjne</div>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Regulamin zaktualizowany o informację o przycisku odstąpienia i jego lokalizacji w
+            sklepie</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Polityka zwrotów opisuje nową elektroniczną procedurę odstąpienia od umowy</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Informacja o kosztach odesłania towaru (kto płaci i w jakiej wysokości) umieszczona
+            przed zakupem</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Informacja o wyjątkach od prawa do zwrotu (towary na indywidualne zamówienie, produkty
+            higieniczne, treści cyfrowe)</div>
+          <span class="item-badge badge-important">Ważne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Klauzula dotycząca treści cyfrowych i zgody klienta na natychmiastowe dostarczenie
+            (e-booki, kursy online)</div>
+          <span class="item-badge badge-important">Ważne</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-body">
+        <div class="item-text">Zmiany w regulaminie i polityce zwrotów skonsultowane z prawnikiem specjalizującym się w
+          prawie konsumenckim</div>
+        <span class="item-badge badge-important">Ważne</span>
+      </div>
+    </div>
+
+
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div>
+          <div class="section-title">UX i dark patterns</div>
+          <div class="section-desc">Zakazane praktyki projektowe do usunięcia ze sklepu</div>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Brak ukrytych lub słabo widocznych elementów ścieżki zwrotu (szary przycisk, mały
+            tekst, stopka)</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Brak mylących komunikatów zniechęcających do zwrotu (np. „Czy na pewno chcesz
+            zrezygnować?")</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Brak sztucznych barier: powód zwrotu nie może być obowiązkowym warunkiem złożenia
+            wniosku</div>
+          <span class="item-badge badge-critical">Krytyczne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Brak wieloetapowych procesów specjalnie wydłużających ścieżkę zwrotu (więcej niż kilka
+            kroków)</div>
+          <span class="item-badge badge-important">Ważne</span>
+        </div>
+      </div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"><span class="checkmark">✓</span></div>
+        <div class="item-body">
+          <div class="item-text">Ścieżka zwrotu przetestowana z perspektywy klienta na urządzeniu mobilnym i desktopie
+          </div>
+          <span class="item-badge badge-important">Ważne</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-card" id="summaryCard">
+      <div class="summary-emoji" id="summaryEmoji">📋</div>
+      <div class="summary-title" id="summaryTitle">Zaznaczaj kolejne punkty</div>
+      <p class="summary-text" id="summaryText">Kliknij każdy punkt, który masz już wdrożony w swoim sklepie. Checklista
+        śledzi Twój postęp.</p>
+    </div>
+
+    <div class="congrats" id="congrats">
+      <div class="congrats-emoji">✅</div>
+      <div class="congrats-title">Sklep jest gotowy na 19 czerwca 2026</div>
+      <p class="congrats-text">Wszystkie 19 punktów zaznaczone. Twój sklep spełnia wymagania dyrektywy UE 2023/2673.
+        Pamiętaj o konsultacji z prawnikiem przed wdrożeniem zmian w dokumentach prawnych.</p>
+    </div>
+
+    <button class="btn-reset" onclick="resetAll()">↺ Wyczyść i zacznij od nowa</button>
+
+    <div class="branding">
+      <img class="branding-logo"
+        src="data:image/jpeg;base64,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"
+        alt="Logo RJ Web Solutions">
+      <div class="branding-body">
+        <div class="branding-name">RJ Web Solutions</div>
+        <div class="branding-tagline">Strony i sklepy internetowe <br> Chatboty AI <br> Automatyzacja e-commerce</div>
+        <div class="branding-contacts">
+          <a class="branding-contact" href="mailto:kontakt@rjweb.pl">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="M2 7l10 7 10-7" />
+            </svg>
+            kontakt@rjweb.pl
+          </a>
+          <a class="branding-contact" href="tel:+48512796996">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" />
+            </svg>
+            +48 512 796 996
+          </a>
+          <a class="branding-contact" href="https://rjweb.pl" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+            </svg>
+            rjweb.pl
+          </a>
+        </div>
+      </div>
+      <a class="branding-cta" href="https://rjweb.pl" target="_blank" rel="noopener">Skontaktuj się &rarr;</a>
+    </div>
+  </div>
+  </div>
+
+  <div class="footer-note">
+    Podstawa prawna: Dyrektywa PE i Rady (UE) 2023/2673 z 22.11.2023 &nbsp;·&nbsp; Data stosowania: 19.06.2026
+    &nbsp;·&nbsp; Organ nadzorczy: UOKiK<br>
+    Checklista ma charakter pomocniczy i nie stanowi porady prawnej. Skonsultuj się z prawnikiem przed wdrożeniem zmian
+    w dokumentach.
+  </div>
+
+  <script>
+    const TOTAL = 19;
+
+    function toggle(el) {
+      el.classList.toggle('checked');
+      update();
+    }
+
+    function update() {
+      const checked = document.querySelectorAll('.item.checked').length;
+      const pct = Math.round((checked / TOTAL) * 100);
+
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressCount').textContent = checked + ' / ' + TOTAL;
+
+      const congrats = document.getElementById('congrats');
+      const summary = document.getElementById('summaryCard');
+      const emoji = document.getElementById('summaryEmoji');
+      const title = document.getElementById('summaryTitle');
+      const text = document.getElementById('summaryText');
+      const remaining = TOTAL - checked;
+
+      if (checked === TOTAL) {
+        congrats.classList.add('visible');
+        summary.style.display = 'none';
+      } else {
+        congrats.classList.remove('visible');
+        summary.style.display = 'block';
+
+        if (pct === 0) {
+          emoji.textContent = '📋';
+          title.textContent = 'Zaznaczaj kolejne punkty';
+          text.textContent = 'Kliknij każdy punkt, który masz już wdrożony w swoim sklepie. Checklista śledzi Twój postęp.';
+        } else if (pct < 40) {
+          emoji.textContent = '🔧';
+          title.textContent = 'Dobry start — ' + pct + '% gotowe';
+          text.textContent = 'Zostało ' + remaining + ' punktów. Skup się najpierw na pozycjach oznaczonych jako Krytyczne.';
+        } else if (pct < 75) {
+          emoji.textContent = '⚙️';
+          title.textContent = 'Jesteś w połowie drogi — ' + pct + '% gotowe';
+          text.textContent = 'Jeszcze ' + remaining + ' punktów. Sprawdź, czy przetestowałeś ścieżkę zwrotu z perspektywy klienta na telefonie.';
+        } else {
+          emoji.textContent = '🏁';
+          title.textContent = 'Prawie gotowe: ' + pct + '% zaliczone';
+          text.textContent = 'Ostatnie ' + remaining + ' punkty i sklep będzie zgodny z dyrektywą. Już blisko!';
+        }
+      }
+    }
+
+    function resetAll() {
+      document.querySelectorAll('.item.checked').forEach(el => el.classList.remove('checked'));
+      update();
+    }
+
+    update();
+  </script>
+</body>
+
+</html>
